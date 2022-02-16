@@ -32,6 +32,9 @@ jobs:
     - name: Test with pytest
       run: |
         pytest -v
+    - name: Test env
+      run: |
+        echo "${{secrets.heroku_email}}"" 
     - name: Deploy to Heroku
       env:
         HEROKU_APP_NAME: ${{secrets.HEROKU_APP_NAME}}
