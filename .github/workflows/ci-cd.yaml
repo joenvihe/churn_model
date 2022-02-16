@@ -37,7 +37,7 @@ jobs:
         git remote -v
     - name: Deploy to Heroku
       env:
-        HEROKU_APP_NAME: "churnmodelprodjoenvihe"
+        HEROKU_APP_NAME: "${{secrets.HEROKU_API_NAME}}"
         HEROKU_API_TOKEN: ${{secrets.HEROKU_API_TOKEN}}
       if: github.ref == 'refs/heads/main' && job.status == 'success'
       run: |
