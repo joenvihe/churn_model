@@ -27,7 +27,9 @@ def predict(data):
     config = read_params(params_path)
     model_dir_path = config["model_webapp_dir"]
     model = joblib.load(model_dir_path)
-    prediction = model.predict(data).tolist()[0]
+    list_predict = model.predict(data).tolist()
+    prediction = list_predict[0]
+    print('PREDICTION:{}'.format(str(list_predict)), file=sys.stderr)
     return prediction 
 
 def validate_input(dict_request):
@@ -43,7 +45,9 @@ def form_response(dict_request):
         if validate_input(dict_request):
             data = dict_request.values()
             data = [list(map(float, data))]
+            print('DATA:{}'.format(str(data)), file=sys.stderr)
             response = predict(data)
+            print('RESPONSE 2:{}'.format(response), file=sys.stderr)
             return response
     except NotANumber as e:
         response =  str(e)
@@ -56,7 +60,7 @@ def index():
             if request.form:
                 dict_req = dict(request.form)
                 response = form_response(dict_req)
-                print('HOLA!', file=sys.stderr)
+                print('RESPONSE:{}'.format(response), file=sys.stderr)
                 return render_template("index.html", response=response)
         except Exception as e:
             print(e)
