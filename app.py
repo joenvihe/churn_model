@@ -3,6 +3,7 @@ import os
 import numpy as np
 import yaml
 import joblib 
+import sys
 
 webapp_root = "webapp"
 params_path = "params.yaml"
@@ -55,6 +56,7 @@ def index():
             if request.form:
                 dict_req = dict(request.form)
                 response = form_response(dict_req)
+                print('HOLA!', file=sys.stderr)
                 return render_template("index.html", response=response)
         except Exception as e:
             print(e)
