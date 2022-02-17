@@ -28,6 +28,9 @@ model_dir: models/model.joblib
 
 model_webapp_dir: webapp/model_webapp_dir/model.joblib
 
+api_webapp_url: https://flask-joenvihe-api.herokuapp.com/prediction/{}
+
 model_monitor:
   target_col_name: target
   monitor_dashboard_html: reports/data_and_target_drift_dashboard.html
+

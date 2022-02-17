@@ -4,6 +4,8 @@ import numpy as np
 import yaml
 import joblib 
 import sys
+import requests
+import json
 
 webapp_root = "webapp"
 params_path = "params.yaml"
@@ -32,6 +34,14 @@ def predict(data):
     print('PREDICTION:{}'.format(str(list_predict)), file=sys.stderr)
     return prediction 
 
+def predict_api(data):
+    config = read_params(params_path)
+    api_url = config["api_webapp_url"]
+    data_params = ",".join(str(e) for e in data[0])
+    r = requests.get(api_url.format(data_params))
+    prediction = json.load(r.text)
+    return prediction 
+
 def validate_input(dict_request):
     for _, val in dict_request.items():
         try:
@@ -46,7 +56,8 @@ def form_response(dict_request):
             data = dict_request.values()
             data = [list(map(float, data))]
             print('DATA:{}'.format(str(data)), file=sys.stderr)
-            response = predict(data)
+            #response = predict(data)
+            response = predict_api(data)
             print('RESPONSE 2:{}'.format(response), file=sys.stderr)
             return response
     except NotANumber as e:
