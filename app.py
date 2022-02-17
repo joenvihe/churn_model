@@ -40,6 +40,7 @@ def predict_api(data):
     data_params = ",".join(str(e) for e in data[0])
     r = requests.get(api_url.format(data_params))
     prediction = json.load(r.text)
+    print("LLAMADA DESDE EL API")
     return prediction 
 
 def validate_input(dict_request):
