@@ -41,6 +41,7 @@ def predict_api(data):
     r = requests.get(api_url.format(data_params))
     prediction = json.load(r.text)
     print("LLAMADA DESDE EL API")
+    print('PREDICTION:{}'.format(prediction, file=sys.stderr)
     return prediction 
 
 def validate_input(dict_request):
