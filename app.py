@@ -46,7 +46,7 @@ def predict_api(data):
     print(r.text)
     try:
         print(type(r.text))
-        prediction = json.load(r.text)
+        prediction = json.loads(r.text)
         print("ERROR 1")
         prediction= prediction["data"]
     except Exception as e:
