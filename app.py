@@ -35,23 +35,16 @@ def predict(data):
     return prediction 
 
 def predict_api(data):
-    print("ENTRO API")
     config = read_params(params_path)
     api_url = config["api_webapp_url"]
     data_params = ",".join(str(e) for e in data[0])
     api_url = str(api_url).format(data_params)
-    print(api_url)
     r = requests.get(api_url)
-    print("DESPUES API")
-    print(r.text)
     try:
-        print(type(r.text))
         prediction = json.loads(r.text)
-        print("ERROR 1")
         prediction= prediction["data"]
     except Exception as e:
-        print("ERROR 2")
-        prediction = r.text["data"]
+        print(e)
     print("LLAMADA DESDE EL API")
     print('PREDICTION:{}'.format(prediction), file=sys.stderr)
     return prediction 
