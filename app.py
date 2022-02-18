@@ -55,7 +55,7 @@ def predict_api(data):
 def validate_input(dict_request):
     for _, val in dict_request.items():
         try:
-            val=float(val)
+            val=int(val)
         except Exception as e:
             raise NotANumber
     return True
@@ -64,7 +64,7 @@ def form_response(dict_request):
     try:
         if validate_input(dict_request):
             data = dict_request.values()
-            data = [list(map(float, data))]
+            data = [list(map(int, data))]
             print('DATA:{}'.format(str(data)), file=sys.stderr)
             #response = predict(data)
             response = predict_api(data)
