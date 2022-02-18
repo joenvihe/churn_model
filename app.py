@@ -43,6 +43,10 @@ def predict_api(data):
     print(api_url)
     r = requests.get(api_url)
     print("DESPUES API")
+    try:
+        print(r.text)
+    except Exception as e:
+        print(r.read())
     prediction = json.load(r.text)["data"]
     print("LLAMADA DESDE EL API")
     print('PREDICTION:{}'.format(prediction), file=sys.stderr)
